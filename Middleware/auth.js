@@ -16,22 +16,19 @@ export const protect = async (req, res, next) => {
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const userid=decoded.userid;
+    
 
-    // c 
- 
-    // If your token was signed as jwt.sign(userId, secret)
-    // const userId = decoded;
-
-    // If your token was signed as jwt.sign({ id: userId }, secret)
-    // const userId = decoded.id;
+   
     if(!decoded){
         return res.json({ success: false, message: "notttt authorized" });
 
 
     } 
 
-    req.user = await User.findById(userid).select("-password");
+    const { id: userId } = decoded;
+
+// then:
+req.user = await User.findById(userId).select("-password");
     // if (!req.user) {
     //   return res.json({ success: false, message: "not authorized" });
     // }

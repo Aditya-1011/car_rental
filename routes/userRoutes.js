@@ -3,11 +3,9 @@ import { getuser, loginuser, registereduser } from "../controller/userController
 import protect from "../Middleware/auth.js";
 const userrouter=express.Router();
 
-console.log("userrouter");
+// console.log("userrouter");
 userrouter.post('/register',registereduser);
-userrouter.post('/login',(req,res,next)=>{
-    console.log("login running");
-},loginuser);
+userrouter.post('/login',loginuser);
 // userrouter.get('/data',protect,getuser);
 userrouter.get('/data', (req, res, next) => {
   console.log("Inside /api/user/data route BEFORE middleware");

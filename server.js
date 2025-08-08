@@ -21,13 +21,13 @@ app.use(express.json());
 console.log(process.env.MONGODB_URL);
 
 app.use((req, res, next) => {
-  console.log("running --- > ");
+  // console.log("running --- > ");
   console.log(`${req.method} ${req.url}`);
   next();
 });
 
 //connnect DATABASE
-await connectDB();
+connectDB();
 app.get('/',(req,res)=>{
     res.send("server is running fine");
 
